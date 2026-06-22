@@ -1,0 +1,57 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use the same stylesheet for navbar + theme -->
+    <link rel="stylesheet" href="../static/css/default.css">
+    <!-- Add index-specific styles -->
+    <link rel="stylesheet" href="../static/css/index_styles.css">
+    <title>Task Tracker</title>
+</head>
+<body>
+    <!-- Logo header -->
+<nav class="navbar">
+    <div class="header-with-icon">
+        <img src="../static/favicon.ico" alt="Task Tracker Icon">
+        <h2>Task Tracker</h2>
+    </div>
+    <!--
+    <ul>
+        <li><a href="/register">Register User</a></li>
+        <li><a href="/login">Login</a></li> 
+        <li><a href="/update">Update Password</a></li>
+        <li><a href="/read">Read User</a></li>
+        <li><a href="/readAll">Read All Users</a></li>
+        <li><a href="/delete">Delete User</a></li>
+    </ul>
+    -->
+
+    <div class="nav-links">
+        <a href="/create">Create Task</a>
+        <a href="/view">View Tasks</a>
+        <a href="/features">Features</a>
+        <a href="/testimonial">Testimonial</a>
+        <a href="/pricing">Pricing</a>
+    </div>
+
+    <div class="auth-links">
+        <a href="../templates/register.html" class="btn">Sign Up</a>
+        <a href="../templates/login.html" class="btn">Login</a>
+    </div>
+</nav>
+
+    <!-- Remaining links -->
+    <!--<ul>
+        <li><a href="/update">Update Password</a></li>
+        <li><a href="/read">Read User</a></li>
+        <li><a href="/readAll">Read All Users</a></li>
+        <li><a href="/delete">Delete User</a></li>
+    </ul>
+    -->
+
+    <!-- Load common.js if needed for global functions -->
+    <script src="../static/js/common.js" defer></script>
+</body>
+</html>

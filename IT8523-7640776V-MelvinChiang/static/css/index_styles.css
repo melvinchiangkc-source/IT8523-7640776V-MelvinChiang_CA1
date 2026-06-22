@@ -1,0 +1,19 @@
+/* index_styles.css */
+
+/* Hero section unique to index page */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(to bottom, #111, #333);
+    color: orange;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
