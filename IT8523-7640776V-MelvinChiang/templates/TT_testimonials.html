@@ -1,0 +1,60 @@
+<!-- testimonials.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use the same stylesheet for navbar + theme -->
+    <link rel="stylesheet" href="../static/css/default.css">
+    <!-- Add testimonials-specific styles -->
+    <link rel="stylesheet" href="../static/css/testimonials_styles.css">
+    <title>Testimonials</title>
+</head>
+<body>
+    <nav class="navbar">
+    <!-- Logo + Title combined into one clickable link -->
+        <a href="../templates/TT_index.html" class="logo-link">
+        <div class="header-with-icon">
+            <img src="../static/favicon.ico" alt="Task Tracker Icon">
+            <h2>Task Tracker</h2>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="../templates/TT_createnewtask.html">Create Task</a>
+        <a href="../templates/TT_viewtasks.html">View Tasks</a>
+        <a href="../templates/TT_features.html">Features</a>
+        <a href="../templates/TT_testimonials.html">Testimonials</a>
+        <a href="../templates/TT_pricing.html">Pricing</a>
+    </div>
+
+    <div class="auth-links">
+        <a href="../templates/TT_register.html" class="btn">Sign Up</a>
+        <a href="../templates/TT_login.html" class="btn">Login</a>
+    </div>
+</nav>
+
+<!-------------------------------------------------------------------------------------------------------------->
+
+<!-- Testimonials Section -->
+<section class="testimonials-container">
+    <h2>Testimonials</h2>
+    <p>See what our users are saying about Task Tracker.</p>
+    <div class="testimonial">
+        <blockquote>
+            "Task Tracker has completely streamlined my workflow!"
+        </blockquote>
+        <cite>- Alex, Project Manager</cite>
+    </div>
+    <div class="testimonial">
+        <blockquote>
+            "Simple, effective, and reliable. Highly recommended."
+        </blockquote>
+        <cite>- Priya, Freelancer</cite>
+    </div>
+</section>
+
+    <!-- Load common.js if needed for global functions -->
+    <script src="../static/js/common.js" defer></script>
+</body>
+</html>

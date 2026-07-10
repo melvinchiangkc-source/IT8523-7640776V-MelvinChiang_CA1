@@ -1,0 +1,67 @@
+<!-- update.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use the same stylesheet for navbar + theme -->
+    <link rel="stylesheet" href="../static/css/default.css">
+    <!-- Add register-specific styles -->
+    <link rel="stylesheet" href="../static/css/update_styles.css">
+    <title>Update Password</title>
+</head>
+<body>
+    <nav class="navbar">
+    <!-- Logo + Title combined into one clickable link -->
+        <a href="../templates/TT_index.html" class="logo-link">
+        <div class="header-with-icon">
+            <img src="../static/favicon.ico" alt="Task Tracker Icon">
+            <h2>Task Tracker</h2>
+        </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="../templates/TT_createnewtask.html">Create Task</a>
+        <a href="../templates/TT_viewtasks.html">View Tasks</a>
+        <a href="../templates/TT_features.html">Features</a>
+        <a href="../templates/TT_testimonials.html">Testimonials</a>
+        <a href="../templates/TT_pricing.html">Pricing</a>
+    </div>
+
+    <div class="auth-links">
+        <a href="../templates/TT_register.html" class="btn">Sign Up</a>
+        <a href="../templates/TT_login.html" class="btn">Login</a>
+    </div>
+</nav>
+
+<!-------------------------------------------------------------------------------------------------------------->
+
+    <h2>Update Task</h2>
+    <form id="updateTaskForm">
+        <div>
+        <label for="taskId">Task ID:</label>
+        <input type="number" id="taskId" required />
+    </div>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required />
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" required></textarea>
+    </div>
+    <div>
+        <label for="points">Points:</label>
+        <input type="number" id="points" required />
+    </div>
+    <div>
+        <label for="url">Image URL:</label>
+        <input type="url" id="url" required />
+    </div>
+    <button id="update-task-btn" type="submit">Update Task</button>
+    </form>
+
+    <!-- Load common.js if needed for global functions -->
+    <script src="../static/js/common.js" defer></script>
+</body>
+</html>

@@ -11,12 +11,110 @@
     <title>Task Tracker</title>
 </head>
 <body>
-    <!-- Logo header -->
-<nav class="navbar">
+    <nav class="navbar">
+    <!-- Logo + Title combined into one clickable link -->
+    <a href="../templates/TT_index.html" class="logo-link">
     <div class="header-with-icon">
         <img src="../static/favicon.ico" alt="Task Tracker Icon">
         <h2>Task Tracker</h2>
     </div>
+    </a>
+
+    <div class="nav-links">
+        <a href="../templates/TT_createnewtask.html">Create Task</a>
+        <a href="../templates/TT_viewtasks.html">View Tasks</a>
+        <a href="../templates/TT_features.html">Features</a>
+        <a href="../templates/TT_testimonials.html">Testimonials</a>
+        <a href="../templates/TT_pricing.html">Pricing</a>
+    </div>
+
+    <div class="auth-links">
+        <a href="../templates/TT_register.html" class="btn">Sign Up</a>
+        <a href="../templates/TT_login.html" class="btn">Login</a>
+    </div>
+</nav>
+
+<!-------------------------------------------------------------------------------------------------------------->
+
+<!-- Features Section -->
+<section class="features-container">
+    <h2>Features</h2>
+    <p>Highlight the key functionalities of your Task Tracker here.</p>
+    <ul>
+        <li>Easy task creation and management</li>
+        <li>Responsive design for all devices</li>
+        <li>Secure login and user authentication</li>
+    </ul>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <p>Explain what makes your Task Tracker stand out.</p>
+    <ul>
+        <li>User-friendly interface</li>
+        <li>Reliable performance</li>
+        <li>Affordable pricing plans</li>
+    </ul>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-container">
+    <h2>Testimonials</h2>
+    <p>See what our users are saying about Task Tracker.</p>
+    <div class="testimonial">
+        <blockquote>
+            "Task Tracker has completely streamlined my workflow!"
+        </blockquote>
+        <cite>- Alex, Project Manager</cite>
+    </div>
+    <div class="testimonial">
+        <blockquote>
+            "Simple, effective, and reliable. Highly recommended."
+        </blockquote>
+        <cite>- Priya, Freelancer</cite>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-container">
+    <h2>Pricing</h2>
+    <p>Choose the plan that fits your needs.</p>
+    <div class="pricing-cards">
+        <div class="card">
+            <h3>Free</h3>
+            <p>$0/month</p>
+            <ul>
+                <li>Basic task management</li>
+                <li>Up to 3 projects</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Pro</h3>
+            <p>$9.99/month</p>
+            <ul>
+                <li>Unlimited projects</li>
+                <li>Advanced features</li>
+                <li>Email support</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Enterprise</h3>
+            <p>Contact us</p>
+            <ul>
+                <li>Custom solutions</li>
+                <li>Dedicated support</li>
+                <li>Team collaboration tools</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+    <!-- Load common.js if needed for global functions -->
+    <script src="../static/js/common.js" defer></script>
+</body>
+<!-------------------------------------------------------------------------------------------------------------->
+
     <!--
     <ul>
         <li><a href="/register">Register User</a></li>
@@ -28,19 +126,7 @@
     </ul>
     -->
 
-    <div class="nav-links">
-        <a href="/create">Create Task</a>
-        <a href="/view">View Tasks</a>
-        <a href="/features">Features</a>
-        <a href="/testimonial">Testimonial</a>
-        <a href="/pricing">Pricing</a>
-    </div>
 
-    <div class="auth-links">
-        <a href="../templates/register.html" class="btn">Sign Up</a>
-        <a href="../templates/login.html" class="btn">Login</a>
-    </div>
-</nav>
 
     <!-- Remaining links -->
     <!--<ul>
@@ -51,7 +137,5 @@
     </ul>
     -->
 
-    <!-- Load common.js if needed for global functions -->
-    <script src="../static/js/common.js" defer></script>
-</body>
+
 </html>

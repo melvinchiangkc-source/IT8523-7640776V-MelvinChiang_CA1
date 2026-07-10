@@ -1,0 +1,26 @@
+.testimonials-container h2 {
+    color: #ff6600; /* matches your orange theme */
+    margin-bottom: 15px;
+}
+
+.testimonials-container {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 900px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255,165,0,0.5);
+}
+
+.testimonials-container blockquote {
+    font-style: italic;
+    color: #ccc;
+    margin: 10px 0;
+}
+
+.testimonials-container cite {
+    display: block;
+    text-align: right;
+    font-size: 0.9em;
+    color: #888;
+}

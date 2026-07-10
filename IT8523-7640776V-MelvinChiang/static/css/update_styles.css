@@ -1,43 +1,31 @@
 /* update_styles.css */
 
 /* Form container */
-#updateForm {
-    background-color: #222;
-    padding: 20px 30px;
-    margin: 80px auto;
-    max-width: 500px;        /* keeps form centered and compact */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255,165,0,0.5);
-    color: orange;
+#updateTaskForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 0 auto;
 }
 
 /* Labels aligned left */
-#updateForm label {
+#updateTaskForm label {
     display: inline-block;
-    width: 100px;            /* fixed label width */
+    width: 20px;            /* fixed label width */
     text-align: right;
     margin-right: 10px;
 }
 
-/* Inputs compact */
-#updateForm input {
-    width: 250px;            /* fixed input width */
-    max-width: 100%;         /* prevent overflow on small screens */
-    padding: 8px;
-    border: 1px solid orange;
-    border-radius: 4px;
-    background-color: #333;
-    color: orange;
-}
-
-#updateForm input:focus {
+#updateTaskForm input:focus {
     outline: none;
     border-color: white;
     color: white;
 }
 
 /* Button styling */
-#updateForm button {
+#updateTaskForm button {
     margin-top: 20px;
     padding: 8px 16px;
     border: 1px solid orange;
@@ -48,23 +36,23 @@
     transition: all 0.3s ease;
 }
 
-#updateForm button:hover {
+#updateTaskForm button:hover {
     background-color: orange;
     color: white;
 }
 
-/* Responsive tweak for mobile */
-@media (max-width: 480px) {
-    #updateForm {
-    padding: 15px;
-    }
-    #updateForm label {
-    display: block;
-    text-align: left;
+/* Stack label above input/textarea */
+#updateTaskForm div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#updateTaskForm label {
     margin-bottom: 5px;
-    width: auto;
-    }
-    #updateForm input {
-    width: 100%;   /* full width only on small screens */
-    }
+    font-weight: bold;
+}
+
+#taskId, #name, #description, #points, #url {
+    width: 400px; /* Approximately 50 characters wide */
 }

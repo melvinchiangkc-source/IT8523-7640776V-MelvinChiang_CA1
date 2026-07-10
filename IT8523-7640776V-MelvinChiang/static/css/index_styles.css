@@ -17,3 +17,66 @@
     font-size: 1.2rem;
     color: #ccc;
 }
+
+.features-container, .why-choose-us {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 900px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255,165,0,0.5);
+}
+
+.features-container h2, .why-choose-us h2, .testimonials-container h2, .pricing-container h2 {
+    color: #ff6600; /* matches your orange theme */
+    margin-bottom: 15px;
+}
+
+.features-container ul, .why-choose-us ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.testimonials-container, .pricing-container {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 900px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255,165,0,0.5);
+}
+
+.testimonials-container blockquote {
+    font-style: italic;
+    color: #ccc;
+    margin: 10px 0;
+}
+
+.testimonials-container cite {
+    display: block;
+    text-align: right;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.pricing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.pricing-cards .card {
+    flex: 1 1 250px;
+    background: #222;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255,165,0,0.5);
+}
+
+.pricing-cards h3 {
+    color: #ff6600;
+    margin-bottom: 10px;
+}

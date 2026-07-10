@@ -1,0 +1,43 @@
+/* Make Description bigger */
+#description {
+  width: 100%;            /* fills the form container */
+  height: 150px;          /* taller box */
+  resize: vertical;       /* allow user to drag taller */
+}
+
+/* Auto-size Create Task button */
+#create-task-btn {
+  display: inline-block;
+  width: auto;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Form container */
+#createTaskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;             /* stretch full width */
+  margin: 0 auto;          /* center form block */
+  padding: 0 15px;         /* breathing room on small screens */
+
+}
+
+/* Stack label above input/textarea */
+#createTaskForm div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#createTaskForm label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
+#name, #description, #points, #url {
+        width: 400px; /* Approximately 50 characters wide */
+      }

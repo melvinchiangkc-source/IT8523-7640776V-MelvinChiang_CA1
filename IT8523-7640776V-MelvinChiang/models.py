@@ -12,7 +12,7 @@ def create_user_table():
     username VARCHAR(80) NOT NULL,
     email VARCHAR(120) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    url VARCHAR(255) NULL
+    url VARCHAR(255) NOT NULL
   ) ENGINE=InnoDB;
   """)
   
@@ -20,19 +20,17 @@ def create_user_table():
   task_table_sql = text("""
   CREATE TABLE IF NOT EXISTS tasks (
     taskId INT AUTO_INCREMENT PRIMARY KEY,
-    taskName VARCHAR(255) NOT NULL,
+    taskName VARCHAR(255) NOT NULL UNIQUE,
     description TEXT,
     points INT NOT NULL,
-    image_url VARCHAR(255),
-    userId INT,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    image_url VARCHAR(255)
 ) ENGINE=InnoDB;
 """)
 
   # Task Progress Table
   task_progress_table_sql = text("""
   CREATE TABLE IF NOT EXISTS task_progress (
-    progress_id INT AUTO_INCREMENT PRIMARY KEY,
+    progressId INT AUTO_INCREMENT PRIMARY KEY,
     taskId INT NOT NULL,
     userId INT NOT NULL,
     completion_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -61,12 +59,12 @@ def create_user_table():
 
   #insert sample tasks
   insert_tasks = text("""
-    INSERT IGNORE INTO tasks (taskId,taskName, description, points, image_url) VALUES
-    ('1', 'Get groceries', 'Get weekly groceries from supermarket', 10, 'https://live.staticflickr.com/7238/7259669024_61fc5a98f6_b.jpg'),
-    ('2', 'Exercise', 'Go to the gym for a one hour workout', 50, 'https://live.staticflickr.com/3329/3210745877_4feb7cd118_b.jpg '),
-    ('3', 'Finish report', 'Complete the progress report before it is due end of the month', 40, 'https://live.staticflickr.com/3400/4566115233_b2471d4de7_b.jpg '),
-    ('4', 'Book hotel', 'Book the accommodation for the upcoming trip', 30, 'https://live.staticflickr.com/3255/2313201182_53b64e6633_b.jpg '),
-    ('5', 'Reserve dinner', 'Make dinner reservation for birthday', 30, 'https://live.staticflickr.com/2365/1908487131_7ae755a70d_b.jpg')
+    INSERT IGNORE INTO tasks (taskName, description, points, image_url) VALUES
+    ('Get groceries', 'Get weekly groceries from supermarket', 10, 'https://live.staticflickr.com/7238/7259669024_61fc5a98f6_b.jpg'),
+    ('Exercise', 'Go to the gym for a one hour workout', 50, 'https://live.staticflickr.com/3329/3210745877_4feb7cd118_b.jpg '),
+    ('Finish report', 'Complete the progress report before it is due end of the month', 40, 'https://live.staticflickr.com/3400/4566115233_b2471d4de7_b.jpg '),
+    ('Book hotel', 'Book the accommodation for the upcoming trip', 30, 'https://live.staticflickr.com/3255/2313201182_53b64e6633_b.jpg '),
+    ('Reserve dinner', 'Make dinner reservation for birthday', 30, 'https://live.staticflickr.com/2365/1908487131_7ae755a70d_b.jpg')
   """)
 
     # Execute all table creation
@@ -74,16 +72,54 @@ def create_user_table():
     connection.execute(user_table_sql)
     connection.execute(task_table_sql)
     connection.execute(task_progress_table_sql)
-    connection.execute(insert_users)
-    connection.execute(insert_tasks)
+
+    # Check if users table is empty
+    user_count = connection.execute(text("SELECT COUNT(*) FROM users")).scalar()
+    if user_count == 0:
+      connection.execute(insert_users)
+
+    # Check if tasks table is empty
+    task_count = connection.execute(text("SELECT COUNT(*) FROM tasks")).scalar()
+    if task_count == 0:
+      connection.execute(insert_tasks)
 
 def initialize_database():
   """Create users tables if they don't exist before the first request.""" 
   create_user_table()
 
+# --------------------------------------------------------------------------------------------------------------------------------
+
+def create_task(taskName, description, points, image_url):
+  try:
+    # Insert the new task
+    db.session.execute(
+      text("INSERT INTO tasks (taskName, description, points, image_url) VALUES (:taskName, :description, :points, :image_url)"),
+      {"taskName": taskName, "description": description, "points": points, "image_url": image_url}
+    )
+
+    # Fetch the auto-generated ID
+    result = db.session.execute(text("SELECT LAST_INSERT_ID()"))
+    taskId = result.scalar()
+
+    db.session.commit()
+    return True, taskId
+  except IntegrityError:
+    # triggers if taskName already exists (due to UNIQUE constraint)
+    return False, "Task already exists"
+  except Exception as e:
+    return False, str(e)
 
 
-
+def update_task(taskId, taskName, description, points, image_url):
+  try:
+    result = db.session.execute(
+      text("UPDATE tasks SET taskName=:taskName, description=:description, points=:points, image_url=:image_url WHERE taskId=:taskId"),
+      {"taskId": taskId, "taskName": taskName, "description": description, "points": points, "image_url": image_url}
+    )
+    db.session.commit()
+    return getattr(result, "rowcount", 0), None
+  except Exception as e:
+    return 0, str(e)
 
 
 def register_user(username, email, password, url):
@@ -103,7 +139,7 @@ def register_user(username, email, password, url):
 def login_user(email, password):
   try:
     result = db.session.execute(
-        text("SELECT id, username, email FROM users WHERE email = :email AND password = :password"),
+        text("SELECT userId, username, email FROM users WHERE email = :email AND password = :password"),
         {"email": email, "password": password}
     )
     user = result.fetchone()
@@ -113,11 +149,11 @@ def login_user(email, password):
   except Exception as e:
     return False, str(e)
     
-def update_user_password(user_id, password):
+def update_user_password(userId, password):
   try:
     result = db.session.execute(
-      text("UPDATE users SET password = :password WHERE id = :id"),
-      {"password": password, "id": user_id}
+      text("UPDATE users SET password = :password WHERE userId = :userId"),
+      {"password": password, "userId": userId}
     )
     db.session.commit()
     # return result.rowcount, None
@@ -125,11 +161,11 @@ def update_user_password(user_id, password):
   except Exception as e:
     return 0, str(e)
 
-def get_user_by_id(user_id):
+def get_user_by_id(userId):
   try:
     result = db.session.execute(
-      text("SELECT id, username, email, url FROM users WHERE id = :id"),
-      {"id": user_id}
+      text("SELECT userId, username, email, url FROM users WHERE userId = :userId"),
+      {"userId": userId}
     )
     user = result.fetchone()
     return dict(user._asdict()) if user else None, None
@@ -142,7 +178,7 @@ def get_filtered_users(search_term, email_filter, limit, offset):
     # 1) writing raw SQL with bind parameters (like :username) and
     # 2) using db.session.execute() or conn.execute() to run the query.
     base_sql = """
-      SELECT id, username, email, url
+      SELECT userId, username, email, url
       FROM users
       WHERE 1=1
     """
@@ -177,11 +213,11 @@ def get_filtered_users(search_term, email_filter, limit, offset):
   except Exception as e:
     return [], 0, str(e)
 
-def delete_user_by_id(user_id):
+def delete_user_by_id(userId):
   try:
     result = db.session.execute(
-      text("DELETE FROM users WHERE id = :id"),
-      {"id": user_id}
+      text("DELETE FROM users WHERE userId = :userId"),
+      {"userId": userId}
     )
     db.session.commit()
     # return result.rowcount, None
